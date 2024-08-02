@@ -26,11 +26,10 @@ jobs:
   build:
     needs: prepare
     runs-on: ubuntu-latest
-    if: needs.prepare-.outputs.length > 0
+    if: needs.prepare.outputs.length > 0
     strategy:
       fail-fast: false
-      matrix:
-        include: ${{ fromJson(needs.prepare.outputs.apps) }}
+      matrix: ${{ fromJson(needs.prepare.outputs.apps) }}
     permissions:
       contents: read
       packages: write
