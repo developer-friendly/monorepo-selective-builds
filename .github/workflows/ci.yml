@@ -29,7 +29,7 @@ jobs:
     if: needs.prepare.outputs.length > 0
     strategy:
       fail-fast: false
-      matrix: ${{ fromJson(needs.prepare.outputs.apps) }}
+      matrix: ${{ fromJson(needs.prepare.outputs.matrix) }}
     permissions:
       contents: read
       packages: write
@@ -49,7 +49,7 @@ jobs:
       - name: Pre-process image name
         id: image-name
         run: |
-          name=$(echo ${{ matrix.apps }} | sed 's/.*\///')
+          name=$(echo ${{ matrix.directory }} | sed 's/.*\///')
           echo "name=$name" >> $GITHUB_OUTPUT
       - id: meta
         name: Docker metadata
@@ -62,7 +62,7 @@ jobs:
         with:
           cache-from: type=gha
           cache-to: type=gha,mode=max
-          context: ${{ matrix.apps }}
+          context: ${{ matrix.directory }}
           labels: ${{ steps.meta.outputs.labels }}
           platforms: linux/amd64,linux/arm64
           push: true
