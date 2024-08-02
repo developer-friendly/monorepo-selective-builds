@@ -10,7 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      packages: write
     outputs:
       matrix: ${{ steps.matrix.outputs.matrix }}
       length: ${{ steps.matrix.outputs.length }}
