@@ -17,14 +17,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         name: Checkout
-      - env:
-          REDIS_HOST: ${{ secrets.REDIS_HOST }}
-          REDIS_PORT: ${{ secrets.REDIS_PORT }}
-          REDIS_PASSWORD: ${{ secrets.REDIS_PASSWORD }}
-          REDIS_SSL: ${{ secrets.REDIS_SSL }}
-        id: matrix
+      - id: matrix
         name: Discover changed services
         uses: developer-friendly/selective-builds-actions@main
+        with:
+          redis-host: ${{ secrets.REDIS_HOST }}
+          redis-password: ${{ secrets.REDIS_PASSWORD }}
 
   build:
     needs: prepare
