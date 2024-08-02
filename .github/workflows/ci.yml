@@ -21,8 +21,8 @@ jobs:
         name: Discover changed services
         uses: developer-friendly/selective-builds-actions@main
         with:
-          redis-host: ${{ secrets.REDIS_HOST }}
-          redis-password: ${{ secrets.REDIS_PASSWORD }}
+          redis-url: ${{ secrets.REDIS_URL }}
+          redis-token: ${{ secrets.REDIS_TOKEN }}
 
   build:
     needs: prepare
