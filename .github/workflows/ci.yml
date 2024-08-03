@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+  schedule:
+    - cron: "0 0 * * *"
 
 jobs:
   prepare:
@@ -20,8 +22,10 @@ jobs:
         name: Discover changed services
         uses: developer-friendly/selective-builds-actions@main
         with:
-          redis-url: ${{ secrets.REDIS_URL }}
-          redis-token: ${{ secrets.REDIS_TOKEN }}
+          redis-host: ${{ secrets.REDIS_HOST }}
+          redis-port: ${{ secrets.REDIS_PORT }}
+          redis-password: ${{ secrets.REDIS_PASSWORD }}
+          redis-ssl: ${{ secrets.REDIS_SSL }}
           exclusions: |
             .git
             .github
@@ -84,8 +88,10 @@ jobs:
         name: Discover changed services
         uses: developer-friendly/selective-builds-actions@main
         with:
-          redis-url: ${{ secrets.REDIS_URL }}
-          redis-token: ${{ secrets.REDIS_TOKEN }}
+          redis-host: ${{ secrets.REDIS_HOST }}
+          redis-port: ${{ secrets.REDIS_PORT }}
+          redis-password: ${{ secrets.REDIS_PASSWORD }}
+          redis-ssl: ${{ secrets.REDIS_SSL }}
           mode: submit
           exclusions: |
             .git
