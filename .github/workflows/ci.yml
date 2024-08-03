@@ -71,3 +71,22 @@ jobs:
           push: true
           tags: |
             ${{ steps.meta.outputs.tags }}
+
+  finalize:
+    runs-on: ubuntu-latest
+    needs: build
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        name: Checkout
+      - id: matrix
+        name: Discover changed services
+        uses: developer-friendly/selective-builds-actions@main
+        with:
+          redis-url: ${{ secrets.REDIS_URL }}
+          redis-token: ${{ secrets.REDIS_TOKEN }}
+          mode: submit
+          exclusions: |
+            .git
+            .github
