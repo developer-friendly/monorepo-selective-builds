@@ -20,7 +20,7 @@ jobs:
         name: Checkout
       - id: matrix
         name: Discover changed services
-        uses: developer-friendly/selective-builds-actions@main
+        uses: developer-friendly/selective-builds-actions@v1
         with:
           redis-host: ${{ secrets.REDIS_HOST }}
           redis-port: ${{ secrets.REDIS_PORT }}
@@ -86,7 +86,7 @@ jobs:
         name: Checkout
       - id: matrix
         name: Discover changed services
-        uses: developer-friendly/selective-builds-actions@main
+        uses: developer-friendly/selective-builds-actions@v1
         with:
           redis-host: ${{ secrets.REDIS_HOST }}
           redis-port: ${{ secrets.REDIS_PORT }}
