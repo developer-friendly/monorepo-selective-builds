@@ -22,6 +22,9 @@ jobs:
         with:
           redis-url: ${{ secrets.REDIS_URL }}
           redis-token: ${{ secrets.REDIS_TOKEN }}
+          exclusions: |
+            .git
+            .github
 
   build:
     needs: prepare
