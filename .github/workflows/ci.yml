@@ -60,7 +60,7 @@ jobs:
           echo "name=$name" >> $GITHUB_OUTPUT
       - id: meta
         name: Docker metadata
-        uses: docker/metadata-action@v5
+        uses: docker/metadata-action@v6
         with:
           images: ghcr.io/${{ github.repository }}/${{ steps.image-name.outputs.name }}
       - id: build-push
